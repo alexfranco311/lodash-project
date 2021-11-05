@@ -62,9 +62,31 @@ const _ = {
             } else undefined
         }
     }, 
-    drop(){
-        
+    drop(array, num){
+        if(num === undefined){
+            num = 1;
+        };
+        let droppedArray = array.slice(num);
+        return droppedArray;
     },
+    dropWhile(array, predicate){
+        const cb = (element, index) => {
+            return !predicate(element, index, array);
+        };
+        let droppedNumber = array.findIndex(cb);
+        let droppedArray = this.drop(array, droppedNumber);
+        return droppedArray;
+    },
+    chunk(array, size){
+        if(size === undefined){
+            size = 1;
+        };
+        let arrayChunks = [];
+        for(let i = 0; i < array.length; i += size){
+            let arrayChunk = array.slice(i, i+size);
+            arrayChunks.push(arrayChunk);
+        } return arrayChunks
+    }
 };
     
 // Do not write or modify code below this line.
